@@ -19,19 +19,8 @@ node *insertionAtFront(node *head,int val){
         return head;
     }
     newNode->data = val;
-    
-    // if linked list is empty
-    if(head == NULL){
-        newNode->next = NULL;
-        head = newNode;
-    }
-    // when linkedlist have multiple nodes
-    else{
-        newNode->next = head;
-        head = newNode; 
-    }
-
-    return head;
+    newNode->next = head;
+    return newNode;
 }
 
 node *insertionAtEnd(node *head,int val){
@@ -119,6 +108,7 @@ node *insertAtPosition(node *head,int val,int loc){
 node *deleteAtFront(node *head){
     if(head == NULL){
         printf("LinkedList is empty");
+        return NULL;
     }
     node *temp = head;
 
@@ -202,7 +192,7 @@ int main(){
     head = insertionAtEnd(head,23);
     head = insertionAtEnd(head,64);
 
-    // head = deleteAtFront(head);
+    head = deleteAtFront(head);
     // head = deleteAtEnd(head);
     // head = deleteAtPosition(head,3);
 
