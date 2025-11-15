@@ -1,49 +1,36 @@
 #include <stdio.h>
 
-int main()
-{
-    // Declare and initialize a sorted array
-    int a[] = {0, 3, 4, 5, 9, 12};
+int binarySearch(int a[], int n, int target) {
+    int start = 0, end = n - 1, mid;
 
-    // Calculate the number of elements in the array
-    int n = sizeof(a) / sizeof(a[0]);
-
-    // Target value to search in the array
-    int target = 3;
-
-    // Define the start and end index for binary search
-    int start = 0, end = n - 1;
-
-    // Declare variables for middle index and flag to track if element is found
-    int mid;
-    int found = 0;
-
-    // Binary Search Loop: runs as long as the search space is valid
-    while (start <= end)
-    {
-        // Calculate the middle index
+    while (start <= end) {
         mid = (start + end) / 2;
 
-        // If target is greater than middle element, search in the right half
         if (target > a[mid])
             start = mid + 1;
-
-        // If target is smaller than middle element, search in the left half
         else if (target < a[mid])
             end = mid - 1;
-
-        // If target is equal to the middle element, element is found
-        else {
-            found = 1;  // Set found flag
-            break;      // Exit the loop
-        }
+        else
+            return mid;  // return index if found
     }
 
-    // Output the result
-    if (found)
-        printf("Element %d found at index %d\n", target, mid);
+    return -1; // return -1 if not found
+}
+
+int main() {
+    int a[] = {0, 3, 4, 5, 9, 12};
+    int n = sizeof(a) / sizeof(a[0]);
+    int target;
+
+    printf("Enter the value to search: ");
+    scanf("%d", &target);
+
+    int index = binarySearch(a, n, target);
+
+    if (index != -1)
+        printf("Element %d found at index %d\n", target, index);
     else
         printf("Element %d not found\n", target);
 
-    return 0;  // End of program
+    return 0;
 }
