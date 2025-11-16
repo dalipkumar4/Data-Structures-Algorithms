@@ -172,7 +172,7 @@ node *deleteAtPosition(node *head,int loc){
     }
 
     // check if location is valid
-    if(temp == NULL && temp->next == NULL){
+    if(temp == NULL || temp->next == NULL){
         printf("Invalid position! Node not deleted.");
         return head;
     }
